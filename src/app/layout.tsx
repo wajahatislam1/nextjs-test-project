@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +17,38 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      {/* Iubenda Configuration Script */}
+      {/* <Script
+        id="iubenda-cs-configuration"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            var _iub = _iub || [];
+            _iub.csConfiguration = {
+              "siteId": 4145500,
+              "cookiePolicyId": 88207597,
+              "lang": "en",
+              "storage": {
+                "useSiteId": true
+              }
+            };
+          `,
+        }}
+      /> */}
+      <Script type="text/javascript" src="//embeds.iubenda.com/widgets/a2653807-6db6-11ee-8bfc-5ad8d8c564c0.js"></Script>
+
+      {/* Iubenda Autoblocking Script */}
+      
+      {/* Iubenda Main Script */}
+      
+      <body className={inter.className}>{children}
+
+
+      <Script
+        src="//cdn.iubenda.com/cs/iubenda_cs.js"
+        strategy="lazyOnload"
+      />
+      </body>
     </html>
   );
 }
